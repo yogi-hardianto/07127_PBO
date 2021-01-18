@@ -1,10 +1,8 @@
 package View;
-import Entity.Yogi07127_AdminEntity;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import javax.swing.*;
 /**
  *
@@ -15,8 +13,8 @@ public class Yogi07127_GUILogin {
     JFrame LogReg = new JFrame();
     JLabel login,daftar,top;
     JRadioButton radiopetugas,radioanggota;
-    JTextField textnologin,textnama,textnotelp,textnodaftar,textalamat,textnpmdaftar,textnpmlogin;
-    JLabel labelnologin,labelnama,labelpasswordlogin,labelnotelp,labelnodaftar,labelpassworddaftar,alamatlabel,labelnpmdaftar,labelnpmlogin;
+    JTextField textnologin,textnama,textnotelp,textnodaftar,textalamat,textnpm;
+    JLabel labelnologin,labelnama,labelpasswordlogin,labelnotelp,labelnodaftar,labelpassworddaftar,alamatlabel,labelnpm;
     JButton check,reg;
     JPasswordField passwordlogin,passworddaftar;
     private boolean ceklogin = false;
@@ -103,13 +101,13 @@ public class Yogi07127_GUILogin {
         textnotelp.setBounds(400, 360, 200, 30);
         LogReg.add(textnotelp);
         
-        labelnpmdaftar = new JLabel("Npm");
-        labelnpmdaftar.setBounds(400, 390, 200, 30);
-        LogReg.add(labelnpmdaftar);
+        labelnpm = new JLabel("Npm");
+        labelnpm.setBounds(400, 390, 200, 30);
+        LogReg.add(labelnpm);
         
-        textnpmdaftar = new JTextField();
-        textnpmdaftar.setBounds(400, 420, 200, 30);
-        LogReg.add(textnpmdaftar);
+        textnpm = new JTextField();
+        textnpm.setBounds(400, 420, 200, 30);
+        LogReg.add(textnpm);
         
         alamatlabel = new JLabel("Alamat");
         alamatlabel.setBounds(400, 450, 200, 30);
@@ -156,7 +154,7 @@ public class Yogi07127_GUILogin {
                         allobjctrl.admin.DataAdmin();
                         allobjctrl.admin.login(textnologin.getText(), passwordlogin.getText());
                         String nama = allobjctrl.admin.adminEntity().getNama();
-                        JOptionPane.showMessageDialog(null,"selamat datang"+nama,"information", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"selamat datang "+nama,"information", JOptionPane.INFORMATION_MESSAGE);
                         AdminGUI admin = new AdminGUI();
                         LogReg.dispose();
                     }catch (Exception exception){
@@ -165,8 +163,9 @@ public class Yogi07127_GUILogin {
                     }
                 }else{
                     try {
-                        allobjctrl.anggota.login(textnpmlogin.getText(), passwordlogin.getText());
-                        JOptionPane.showMessageDialog(null,"Selamat Datang "+allobjctrl.anggota.getListSiswa(),"information",JOptionPane.INFORMATION_MESSAGE);
+                        allobjctrl.anggota.login(textnologin.getText(), passwordlogin.getText());
+                        String nama = allobjctrl.anggota.siswaEntity().getNama();
+                        JOptionPane.showMessageDialog(null,"Selamat Datang "+nama,"information",JOptionPane.INFORMATION_MESSAGE);
                         AnggotaGUI prak = new AnggotaGUI();
                         LogReg.dispose();
                     }catch(Exception exception){
@@ -185,7 +184,7 @@ public class Yogi07127_GUILogin {
                     String nama = textnama.getText();
                     String pass = passworddaftar.getText();
                     String notelp = textnotelp.getText();
-                    String npm = textnpmdaftar.getText();
+                    String npm = textnpm.getText();
                     String alamat = textalamat.getText();
                     allobjctrl.anggota.insertSiswa(no, nama, pass, notelp, npm, alamat);
                     JOptionPane.showMessageDialog(null,"Register Sukses","information", JOptionPane.INFORMATION_MESSAGE);
@@ -203,8 +202,9 @@ public class Yogi07127_GUILogin {
         passwordlogin.setText(null);
         textnama.setText(null);
         textnotelp.setText(null);
-        textnpmlogin.setText(null);
-        textnpmdaftar.setText(null);
+        textnpm.setText(null);
+        textalamat.setText(null);
+        
     }
     
 }

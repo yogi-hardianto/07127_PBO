@@ -32,7 +32,7 @@ public class Yogi07127_SiswaModel implements Yogi07127_ModelInterfaces{
     
     }
     
-  public Yogi07127_SiswaEntity getSiswaArrayList (int index){
-        return getSiswaArrayList(index);
+  public Yogi07127_SiswaEntity showsiswa (int index){
+        return Anggota.get(index);
 }
 }
